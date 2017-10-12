@@ -1,0 +1,55 @@
+{
+    "artifacts": [
+        "nginx*.deb",
+        "nginx*.changes",
+        "nginx*.buildinfo",
+    ],
+    "targets": {
+        "raspbian-jessie": {
+            "environment": { 
+                "NGINX_URL": "http://nginx.org/packages/debian",
+                "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key"
+            },
+            "buildenv": "raspbian-jessie",
+            "builddeps": [
+                "lsb-release",
+                "wget",
+                "coreutils",
+                "apt-src",
+                "sudo"
+            ],
+            "buildcmd": [
+                "cd ${WORKDIR}",
+                "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
+                "sudo apt-key add nginx.key",
+                "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
+                "sudo apt-src update",
+                "apt-src --build install nginx",
+                "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout"
+            ]
+        },
+        "raspbian-stretch": {
+            "environment": { 
+                "NGINX_URL": "http://nginx.org/packages/debian",
+                "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key"
+            },
+            "buildenv": "raspbian-stretch",
+            "builddeps": [
+                "lsb-release",
+                "wget",
+                "coreutils",
+                "apt-src",
+                "sudo"
+            ],
+            "buildcmd": [
+                "cd ${WORKDIR}",
+                "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
+                "sudo apt-key add nginx.key",
+                "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
+                "sudo apt-src update",
+                "apt-src --build install nginx",
+                "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout"
+            ]
+        },
+    },
+}
