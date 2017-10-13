@@ -5,7 +5,7 @@
     ],
     "targets": {
         "raspbian-stretch": {
-            "environment": { 
+            "environment": {
                 "NGINX_URL": "http://nginx.org/packages/debian",
                 "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key"
             },
@@ -24,10 +24,9 @@
                 "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
                 "sudo apt-key add nginx.key",
                 "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
-                "sudo apt-src update",
+                "sudo apt-src update && sudo apt-get update && sudo apt-get upgrade -y",
                 "apt-src --build install nginx",
                 "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout",
-                "cd /project/repo/checkout; ./deb_bintray.py nginx"
             ]
         },
     },
