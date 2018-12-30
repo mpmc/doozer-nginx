@@ -7,7 +7,7 @@
         "raspbian-stretch": {
             "environment": {
                 "NGINX_URL": "http://nginx.org/packages/debian",
-                "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key"
+                "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key",
             },
             "buildenv": "raspbian-stretch",
             "builddeps": [
@@ -22,9 +22,6 @@
             ],
             "buildcmd": [
                 "cd ${WORKDIR}",
-                "sudo mkdir -p /usr/local/share/ca-certificates/cacert.org",
-                "sudo wget -P /usr/local/share/ca-certificates/cacert.org https://www.tbs-certificats.com/issuerdata/DigiCert_Global_Root_G2.crt http://www.cacert.org/certs/class3.crt",
-                "sudo update-ca-certificates --fresh",
                 "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
                 "sudo apt-key add nginx.key",
                 "echo \"deb ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
@@ -40,6 +37,7 @@
                 "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key",
                 "RTMP_GIT_URL": "http://github.com/arut/nginx-rtmp-module.git",
                 "RTMP_GIT_BRANCH": "master",
+                "GIT_SSL_NO_VERIFY": "true",
             },
             "buildenv": "raspbian-stretch",
             "builddeps": [
@@ -56,10 +54,7 @@
             ],
             "buildcmd": [
                 "cd ${WORKDIR}",
-                "sudo mkdir -p /usr/local/share/ca-certificates/cacert.org",
-                "sudo wget -P /usr/local/share/ca-certificates/cacert.org https://www.tbs-certificats.com/issuerdata/DigiCert_Global_Root_G2.crt http://www.cacert.org/certs/class3.crt",
-                "sudo update-ca-certificates --fresh",
-                "GIT_SSL_NO_VERIFY=true git clone --verbose ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
+                "git clone ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
                 "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
                 "sudo apt-key add nginx.key",
                 "echo \"deb ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
@@ -77,6 +72,7 @@
                 "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key",
                 "RTMP_GIT_URL": "http://github.com/arut/nginx-rtmp-module.git",
                 "RTMP_GIT_BRANCH": "master",
+                "GIT_SSL_NO_VERIFY": "true",
             },
             "buildenv": "stretch-amd64",
             "builddeps": [
@@ -93,10 +89,7 @@
             ],
             "buildcmd": [
                 "cd ${WORKDIR}",
-                "sudo mkdir -p /usr/local/share/ca-certificates/cacert.org",
-                "sudo wget -P /usr/local/share/ca-certificates/cacert.org https://www.tbs-certificats.com/issuerdata/DigiCert_Global_Root_G2.crt http://www.cacert.org/certs/class3.crt",
-                "sudo update-ca-certificates --fresh",
-                "GIT_SSL_NO_VERIFY=true git clone --verbose ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
+                "git clone ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
                 "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
                 "sudo apt-key add nginx.key",
                 "echo \"deb ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
@@ -114,6 +107,7 @@
                 "NGINX_KEY_URL": "http://nginx.org/keys/nginx_signing.key",
                 "RTMP_GIT_URL": "http://github.com/arut/nginx-rtmp-module.git",
                 "RTMP_GIT_BRANCH": "master",
+                "GIT_SSL_NO_VERIFY": "true",
             },
             "buildenv": "stretch-i386",
             "builddeps": [
@@ -130,10 +124,7 @@
             ],
             "buildcmd": [
                 "cd ${WORKDIR}",
-                "sudo mkdir -p /usr/local/share/ca-certificates/cacert.org",
-                "sudo wget -P /usr/local/share/ca-certificates/cacert.org https://www.tbs-certificats.com/issuerdata/DigiCert_Global_Root_G2.crt http://www.cacert.org/certs/class3.crt",
-                "sudo update-ca-certificates --fresh",
-                "GIT_SSL_NO_VERIFY=true git clone --verbose ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
+                "git clone ${RTMP_GIT_URL} rtmp; cd rtmp && git checkout ${RTMP_GIT_BRANCH} && git pull;",
                 "if [ ! -f nginx.key ]; then wget -O nginx.key ${NGINX_KEY_URL}; fi",
                 "sudo apt-key add nginx.key",
                 "echo \"deb ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee /etc/apt/sources.list.d/nginx.list",
