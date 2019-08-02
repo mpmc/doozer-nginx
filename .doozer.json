@@ -73,7 +73,7 @@
                 "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee -a /etc/apt/sources.list.d/nginx.list",
                 "apt-src update && sudo apt-get update && sudo apt-get upgrade -y",
                 "apt-src install nginx",
-                "sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
+                "sudo sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
                 "apt-src build nginx",
                 "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout",
             ]
@@ -113,7 +113,7 @@
                 "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee -a /etc/apt/sources.list.d/nginx.list",
                 "apt-src update && sudo apt-get update && sudo apt-get upgrade -y",
                 "apt-src install nginx",
-                "sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
+                "sudo sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
                 "apt-src build nginx",
                 "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout",
             ]
@@ -153,7 +153,7 @@
                 "echo \"deb-src ${NGINX_URL}/ $(lsb_release -sc) nginx\" | sudo tee -a /etc/apt/sources.list.d/nginx.list",
                 "sudo apt-src update && sudo apt-get update && sudo apt-get upgrade -y",
                 "sudo apt-src install nginx",
-                "sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
+                "sudo sed -i 's#--modules-path=#--add-module=${WORKDIR}/rtmp --modules-path=#g' ./nginx-*/debian/rules",
                 "sudo apt-src build nginx",
                 "mv ./nginx*.{deb,changes,buildinfo} /project/repo/checkout",
             ]
